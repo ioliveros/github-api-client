@@ -20,11 +20,9 @@ class Github(object):
         self.page = kwargs.get('page', settings.DEFAULT_PAGE)
         self.per_page = kwargs.get('per_page', settings.DEFAULT_PER_PAGE)        
 
-        self.repo_list = get_list(
-            user=self.get_list(api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_API'] \
-                if not kwargs.get('owner', None) else kwargs['owner'],
-            api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API']) \
-                if not kwargs.get('repositories', None) else kwargs['repositories']
+        self.repo_list = self.get_list(user=kwargs['owner'], 
+            api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API']) /
+            if not kwargs.get('repositories', None) else kwargs['repositories'])
         
         self.repo_done = []
 
