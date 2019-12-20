@@ -53,7 +53,7 @@ class Github(object):
             ...
         """
         for _ in self.repo_list:
-
+            
 
     def read(self, *args, **kwargs):
         """will request data to github api"""     
