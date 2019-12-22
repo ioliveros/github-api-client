@@ -10,7 +10,7 @@ Create a [virtual environment](https://virtualenv.pypa.io/en/stable/) first.
 virtualenv -p python3.6 <name_of_env> --always-copy --no-site-packages
 ```
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
 
 ```bash
 pip install -r requirements.pip
@@ -53,6 +53,8 @@ gh.read()
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
+
+Concerns, feedback or just want to get in touch? Email me: ioliveros.dev@gmail.com
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
