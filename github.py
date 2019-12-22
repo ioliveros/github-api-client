@@ -16,13 +16,13 @@ class Github(object):
         """initialize github-api parameter variables"""
 
         self.current_repo = None
-        
-        self.page = kwargs.get('page', settings.DEFAULT_PAGE)
-        self.per_page = kwargs.get('per_page', settings.DEFAULT_PER_PAGE)        
+        self.owner = kwargs['owner']
 
-        self.repo_list = self.get_list(user=kwargs['owner'], 
-            api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API']) /
-            if not kwargs.get('repositories', None) else kwargs['repositories'])
+        self.page = kwargs.get('page', settings.DEFAULT_PAGE)
+        self.per_page = kwargs.get('per_page', settings.DEFAULT_PER_PAGE)                
+        print('==> ', settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'])
+        self.repo_list = kwargs['repositories'] if kwargs.get('repositories', None) else \
+            self.get_list(api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'], **kwargs)
         
         self.repo_done = []
 
@@ -34,15 +34,17 @@ class Github(object):
             :user/:repo/issues
             :user/:repo/pulls
         """
+        print('{api_endpoint}'.format(**kwargs))
         response = requests.get('{api_endpoint}'.format(**kwargs),
             headers={'User-Agent':'Google-Bot'},
             params={
-                'page':self.current_page,
-                'per_page':self.page_limit                
+                'page':self.page,
+                'per_page':self.per_page                
             }
-        )
-        if response.json:
-            yield            
+        )        
+        #if response.json:
+        #    yield            
+        return response.json
 
     def builder(self, *args, **kwargs):
         """this will build data-structure for the Github Class, will depend on the ff:
@@ -53,6 +55,7 @@ class Github(object):
             ...
         """
         for _ in self.repo_list:
+            print(_)
             
 
     def read(self, *args, **kwargs):
