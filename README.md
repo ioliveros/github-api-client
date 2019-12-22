@@ -8,21 +8,22 @@ Create a [virtual environment](https://virtualenv.pypa.io/en/stable/) first.
 
 ```bash
 virtualenv -p python3.6 <name_of_env> --always-copy --no-site-packages
+source <name_of_env>/bin/activate
 ```
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
 
 ```bash
-pip install -r requirements.pip
+(env) pip install -r requirements.pip
 ```
 
 ## Basic Usage
 
 ```python
-import github
+(env) import github
 
-gh = github.Github(owner='ioliveros')
-gh.read()
+(env) gh = github.Github(owner='ioliveros')
+(env) gh.read()
 
 >> {
     'owner': 'ioliveros',
@@ -42,10 +43,10 @@ gh.read()
 to avoid rate limit `API rate limit exceeded` error
 
 ```python
-import github
+(env) import github
 
-gh = github.Github(owner='ioliveros', proxies={'http':'<ip>:<port>', 'https':'<ip>:<port>'})
-gh.read()
+(env) gh = github.Github(owner='ioliveros', proxies={'http':'<ip>:<port>', 'https':'<ip>:<port>'})
+(env) gh.read()
 
 ```
 
