@@ -1,6 +1,6 @@
 # Github API Client
 
-`Github API Client` pulls data from github api
+A `Github API Client` that pulls data from github api
 
 ## Installation
 
@@ -44,8 +44,7 @@ to avoid rate limit `API rate limit exceeded` error
 ```python
 import github
 
-gh = github.Github(owner='ioliveros', proxies={'http':'<ip>:<port>', 'https':'<ip>:<port>'}
-     )
+gh = github.Github(owner='ioliveros', proxies={'http':'<ip>:<port>', 'https':'<ip>:<port>'})
 gh.read()
 
 ```
