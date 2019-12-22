@@ -39,20 +39,26 @@ class Github(object):
             :user/:repo/commits
             :user/:repo/issues
             :user/:repo/pulls
-        """            
-        response = requests.get('{api_endpoint}'.format(**kwargs),
-            headers={'User-Agent':'Google-Bot'},
-            params={
+        """
+        request_params = {
+            'headers': {
+                'User-Agent':'Google-Bot'
+            },
+            'params': {
                 'page':kwargs.get('page', self.page),
                 'per_page':kwargs.get('per_page', self.per_page)
             }
-        )          
+        }
+        if kwargs.get('proxy', None):
+            request_params['proxies'] = kwargs['proxies']
+
+        response = getattr(requests, 'get')('{api_endpoint}'.format(**kwargs),  **request_params)
         return response.json()   
 
     def _get_repo_list(self, *args, **kwargs):
         """this will get repo-list"""                
         repo_list = kwargs['repositories'] if kwargs.get('repositories', None) else self.get_list(
-            api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'].format(**kwargs)
+            api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'].format(**kwargs), **kwargs
         )
         for r in repo_list:
             if isinstance(r, dict):
@@ -65,7 +71,7 @@ class Github(object):
         r = []
         if kwargs['resource'] in self.resources:
             r = self.get_list(
-                api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'].format(**kwargs)
+                api_endpoint=settings.GITHUB_SETTINGS['GITHUB_USER_REPO_API'].format(**kwargs), **kwargs
             )
         else:
             ValueError("{resource} - Resource Not Supported".format(**kwargs))        
