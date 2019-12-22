@@ -4,8 +4,10 @@
 
     ref: https://developer.github.com/v3/
 
+    eg.
+        https://api.github.com/repos/processone/ejabberd/issues
+
 """
-import os
 
 DEFAULT_PAGE = 1
 DEFAULT_PER_PAGE = 10
@@ -23,7 +25,3 @@ GITHUB_SETTINGS = {
         base=GITHUB_BASE_API
     )
 }
-"""
-Ref:
-https://api.github.com/repos/processone/ejabberd/issues
-"""
