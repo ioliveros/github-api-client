@@ -56,6 +56,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 Concerns, feedback or just want to get in touch? Email me: ioliveros.dev@gmail.com
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
